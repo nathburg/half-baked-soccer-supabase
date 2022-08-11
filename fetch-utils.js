@@ -1,5 +1,5 @@
-const SUPABASE_URL = 'https://gxwgjhfyrlwiqakdeamc.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNjQxMTMxMiwiZXhwIjoxOTUxOTg3MzEyfQ.PHekiwfLxT73qQsLklp0QFEfNx9NlmkssJFDnlvNIcA';
+const SUPABASE_URL = 'https://jfjbgzuahxgxuzhpbvjy.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpmamJnenVhaHhneHV6aHBidmp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTk3MjEyNDQsImV4cCI6MTk3NTI5NzI0NH0.ALTank2v_SVyJvJfAF_p6loMLpa5JT8KDW0EllJpk5Q';
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -19,7 +19,9 @@ The games are stored in the database using this data model:
 
 export async function createGame(game){
     // create a single new game in the games table using the above object
-    
+    console.log(game);
+    const response = await client.from('games').insert([game]);
+    console.log(response);
     return checkError(response);
 }
 
