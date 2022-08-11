@@ -19,10 +19,7 @@ The games are stored in the database using this data model:
 
 export async function createGame(game){
     // create a single new game in the games table using the above object
-    console.log(game);
-    const response = await client.from('games').insert([game]);
-    console.log(response);
-    return checkError(response);
+    await client.from('games').insert([game]);
 }
 
 export async function getGames() {
@@ -31,41 +28,41 @@ export async function getGames() {
     return games.data;    
 }
 
-export async function getUser() {
-    return client.auth.session();
-}
+// export async function getUser() {
+//     return client.auth.session();
+// }
 
 
-export async function checkAuth() {
-    const user = await getUser();
+// export async function checkAuth() {
+//     const user = await getUser();
 
-    if (!user) location.replace('../'); 
-}
+//     if (!user) location.replace('../'); 
+// }
 
-export async function redirectToGames() {
-    if (await getUser()) {
-        location.replace('./games');
-    }
-}
+// export async function redirectToGames() {
+//     if (await getUser()) {
+//         location.replace('./games');
+//     }
+// }
 
-export async function signupUser(email, password){
-    const response = await client.auth.signUp({ email, password });
+// export async function signupUser(email, password){
+//     const response = await client.auth.signUp({ email, password });
     
-    return response.user;
-}
+//     return response.user;
+// }
 
-export async function signInUser(email, password){
-    const response = await client.auth.signIn({ email, password });
+// export async function signInUser(email, password){
+//     const response = await client.auth.signIn({ email, password });
 
-    return response.user;
-}
+//     return response.user;
+// }
 
-export async function logout() {
-    await client.auth.signOut();
+// export async function logout() {
+//     await client.auth.signOut();
 
-    return window.location.href = '../';
-}
+//     return window.location.href = '../';
+// }
 
-function checkError({ data, error }) {
-    return error ? console.error(error) : data;
-}
+// function checkError({ data, error }) {
+//     return error ? console.error(error) : data;
+// }

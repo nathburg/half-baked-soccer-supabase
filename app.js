@@ -103,7 +103,6 @@ async function displayAllGames() {
     pastGamesEl.textContent = '';
     // FETCH ALL GAMES from supabase
     const games = await getGames();
-    console.log(games);
     // loop through the past games
     for (let game of games) {
         pastGamesEl.append(renderGame(game));
