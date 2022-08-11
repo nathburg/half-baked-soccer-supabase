@@ -40,26 +40,30 @@ nameForm.addEventListener('submit', (e) => {
 
 teamOneAddButton.addEventListener('click', () => {
     // increment the current state for team one's score
-
+    currentGame.score1++;
     displayCurrentGameEl();
 });
 
 teamTwoAddButton.addEventListener('click', () => {
     // increment the current state for team two's score
-
+    currentGame.score2++;
     displayCurrentGameEl();
 });
 
 teamOneSubtractButton.addEventListener('click', () => {
     // decrement the current state for team one's score
-
+    if (currentGame.score1 > 0) {
+        currentGame.score1--;
+    }
     displayCurrentGameEl();
 });
 
 teamTwoSubtractButton.addEventListener('click', () => {
     // decrement the current state for team two's score
-
-    displayCurrentGameEl();
+    if (currentGame.score2 > 0) {
+        currentGame.score2--;
+        displayCurrentGameEl();
+    }
 });
 
 finishGameButton.addEventListener('click', async () => {
