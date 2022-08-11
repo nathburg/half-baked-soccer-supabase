@@ -3,7 +3,7 @@ import { renderGame } from './render-utils.js';
 
 const currentGameEl = document.getElementById('current-game-container');
 const pastGamesEl = document.getElementById('past-games-container');
-const logoutButton = document.getElementById('logout');
+// const logoutButton = document.getElementById('logout');
 
 const nameForm = document.getElementById('name-form');
 const teamOneAddButton = document.getElementById('team-one-add-button');
@@ -14,7 +14,7 @@ const finishGameButton = document.getElementById('finish-game-button');
 const teamOneLabel = document.getElementById('team-one-name');
 const teamTwoLabel = document.getElementById('team-two-name');
 
-// checkAuth();
+displayAllGames();
 
 let currentGame = {
     name1: '',
@@ -77,6 +77,7 @@ finishGameButton.addEventListener('click', async () => {
     currentGame.score2 = 0;
 
     displayCurrentGameEl();
+    displayAllGames();
 });
 
 // on load . . .
@@ -97,10 +98,16 @@ function displayCurrentGameEl() {
     currentGameEl.append(newGame);
 }
 
-function displayAllGames() {
+async function displayAllGames() {
     // clear out the past games list in the DOM
+    pastGamesEl.textContent = '';
     // FETCH ALL GAMES from supabase
+    const games = await getGames();
+    console.log(games);
     // loop through the past games
+    for (let game of games) {
+        pastGamesEl.append(renderGame(game));
+    }
     // render and append a past game for each past game in state
 }
 

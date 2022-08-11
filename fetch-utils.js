@@ -27,8 +27,8 @@ export async function createGame(game){
 
 export async function getGames() {
     // select all games from the games table
-
-    return checkError(response);    
+    const games = await client.from('games').select('*');
+    return games.data;    
 }
 
 export async function getUser() {
